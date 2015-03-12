@@ -4,8 +4,10 @@ RESULT = hashcode
 #SOURCES = $(wildcard src/*.ml)
 SOURCES = \
 	src/server.ml \
-	src/parser.ml \
-	src/slot.ml
+	src/slot.ml \
+	src/center.ml \
+	src/parser.ml
+
 
 OCAMLDOCFLAGS = -charset utf-8
 

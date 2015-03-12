@@ -1,6 +1,6 @@
 type t
 
-val create : int -> int -> int -> Server.t -> t
+val create : int -> int -> int -> int -> t
 
 val getNbRows : t -> int
 
@@ -13,3 +13,5 @@ val getSlot : t -> int -> int -> Slot.t
 val setSlot : t -> int -> int -> Slot.t -> unit
 
 val getPool : t -> int -> Server.t list
+
+val addServer : t -> Server.t -> unit
