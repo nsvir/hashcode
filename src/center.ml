@@ -82,3 +82,30 @@ let getRowCapacity center rowIndex =
       | _ -> sum
   ) 0
 
+let getRoom center rowIndex =
+  let row = center.matrix.(rowIndex) in
+  let maxSize = ref 0 and maxIndex = ref 0
+  and currentSize = ref 0 and currentIndex = ref (-1) in
+  row |> Array.iteri (
+    fun i slot -> 
+
+      match slot with
+      | Slot.Empty ->
+        if !currentIndex = -1 then (
+          currentIndex := i;
+          currentSize := 1
+        )
+        else (
+          incr currentSize
+        )
+
+      | Slot.Unavailable | Slot.Tail | Slot.Cons _-> (
+        if !currentIndex != -1 && !currentSize > !maxSize then (
+          maxSize := !currentSize;
+          maxIndex := !currentIndex;
+        );
+        currentIndex := -1;
+        currentSize := 0
+      )
+  );
+  (!maxIndex, !maxSize)
