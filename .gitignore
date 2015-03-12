@@ -1,2 +1,6 @@
 *~
 .editorconfig
+*.cmo
+*.cmi
+._d
+hashcode
