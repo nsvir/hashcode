@@ -48,3 +48,35 @@ let getPool center n = (* renvoie la pool numéro n dans le center passé en par
   done;
   !result
 
+let getUsedServers center =
+  center.servers |> List.filter Server.isUsed
+
+let getPoolCapacity pool =
+  let rec aux l acc =
+    match l with 
+    | hd :: tl -> aux tl (acc + Server.getCapacity hd)
+    | [] -> acc in 
+    aux pool 0
+
+let findWorstPool center =
+  let worstPoolSoFar = ref (getPool center 0) in
+  let worstPoolCapacity = ref (getPoolCapacity !worstPoolSoFar) in
+  for i = 0 to center.nbPools - 1 do
+    let newPool = getPool center i in
+    let currentPoolCapacity = getPoolCapacity newPool in
+    if currentPoolCapacity < !worstPoolCapacity then (
+      worstPoolSoFar := newPool;
+      worstPoolCapacity := currentPoolCapacity
+    )
+  done;
+  !worstPoolSoFar
+
+let getRowCapacity center rowIndex =
+  let row = center.matrix.(rowIndex) in
+  row |> Array.fold_left (
+    fun sum slot ->
+      match slot with
+      | Slot.Cons server -> sum + Server.getCapacity server
+      | _ -> sum
+  ) 0
+
