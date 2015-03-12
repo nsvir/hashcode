@@ -1,1 +1,1 @@
-type t  = Empty | Cons of server | Unavailable | Tail
+type t = Cons of Server.t | Empty | Unavailable | Tail
