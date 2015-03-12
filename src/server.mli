@@ -5,13 +5,13 @@ val create : int -> int -> t
 
 val isUsed : t -> bool
 
-val setUsed : t -> ()
+val setUsed : t -> unit
 
-val setUnused : t -> ()
+val setUnused : t -> unit
 
 val getPool : t -> int
 
-val setPool : t -> int -> ()
+val setPool : t -> int -> unit
 
-val unsetPool : t -> ()
+val unsetPool : t -> unit
 
