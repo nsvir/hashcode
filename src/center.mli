@@ -26,3 +26,4 @@ val getPoolCapacity : Server.t list -> int
 
 val findWorstPool : t -> int
 
+val getRoom : t -> int -> int * int

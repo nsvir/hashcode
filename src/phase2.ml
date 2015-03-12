@@ -5,7 +5,7 @@
  * Keep going until all servers are allocated. *)
 
 let evalServer s =
-  float_of_int (Server.getCapacity s) /. float_of_int (Server.getSize s)
+  Server.getCapacity s
 
 let compareServer s1 s2 =
   Pervasives.compare (evalServer s1) (evalServer s2)
