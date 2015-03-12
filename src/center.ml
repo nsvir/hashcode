@@ -61,15 +61,17 @@ let getPoolCapacity pool =
 let findWorstPool center =
   let worstPoolSoFar = ref (getPool center 0) in
   let worstPoolCapacity = ref (getPoolCapacity !worstPoolSoFar) in
+  let worstPoolIndex = ref 0 in
   for i = 0 to center.nbPools - 1 do
     let newPool = getPool center i in
     let currentPoolCapacity = getPoolCapacity newPool in
     if currentPoolCapacity < !worstPoolCapacity then (
       worstPoolSoFar := newPool;
-      worstPoolCapacity := currentPoolCapacity
+      worstPoolCapacity := currentPoolCapacity;
+      worstPoolIndex := i
     )
   done;
-  !worstPoolSoFar
+  !worstPoolIndex
 
 let getRowCapacity center rowIndex =
   let row = center.matrix.(rowIndex) in

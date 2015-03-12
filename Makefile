@@ -8,7 +8,8 @@ SOURCES = \
 	src/center.ml \
 	src/parser.ml \
 	src/flush.ml \
-	src/main.ml
+	src/main.ml \
+	src/phase2.ml
 
 
 OCAMLDOCFLAGS = -charset utf-8

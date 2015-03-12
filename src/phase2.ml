@@ -4,20 +4,25 @@
  * Allocate it the best unallocated server so far
  * Keep going until all servers are allocated. *)
 
-let worstPoolSoFar = ref (getPool center 0);
+let evalServer s =
+  float_of_int (Server.getCapacity s) /. float_of_int (Server.getSize s)
 
-let getCapacity(pool) =
-  let rec aux l acc =
-          match l with 
-            | hd :: tl -> aux tl (acc + hd.capacity)
-            | [] -> acc in 
-  aux pool 0
+let compareServer s1 s2 =
+  Pervasives.compare (evalServer s1) (evalServer s2)
 
-let findWorstPool(center) =
-        for i = 0 to 44 do
-                let newPool = getPool(center,i) in
-                if getCapacity(newPool) < getCapacity(!worstPoolSoFar) then
-                        worstPoolSoFar := newPool
-        done;
-        !worstPoolSoFar
+let run center =
+  let sortedServerList =
+    Center.getUsedServers center |> List.sort compareServer
+  in
+  let rec aux l = 
+    match l with
+    | [] -> ()
+    | server :: tail ->
+      let worstPoolIndex = Center.findWorstPool center in
+      Server.setPool server worstPoolIndex;
+      aux tail
+  in
+  aux sortedServerList
+
+
 

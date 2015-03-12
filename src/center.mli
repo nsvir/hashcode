@@ -24,4 +24,5 @@ val getRowCapacity : t -> int -> int
 
 val getPoolCapacity : Server.t list -> int
 
-val findWorstPool : t -> Server.t list
+val findWorstPool : t -> int
+
