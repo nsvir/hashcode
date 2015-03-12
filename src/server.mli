@@ -15,3 +15,6 @@ val setPool : t -> int -> unit
 
 val unsetPool : t -> unit
 
+val getSize : t -> int
+
+val getCapacity : t -> int

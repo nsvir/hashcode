@@ -25,3 +25,8 @@ let setPool server pool =
 let unsetPool server =
   server.pool <- (-1)
 
+let getSize server =
+  server.size
+
+let getCapacity server =
+  server.capacity
