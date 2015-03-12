@@ -82,3 +82,19 @@ let getRowCapacity center rowIndex =
       | _ -> sum
   ) 0
 
+let findLowerRow center =
+  let lower = ref -1
+  and index = ref -1
+  and result = ref 0 in
+  for i = 0 to center.nbRows do
+    for j = 0 to center.nbSlotsByRow do
+      result := 0;
+      result := !result + Server.getCapacity matrix.(i).(j)
+    done;
+    if (lower = -1 || !result < !lower) then
+      begin
+	lower := !result;
+	index := i
+      end
+  done;
+  !index
