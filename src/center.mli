@@ -15,3 +15,5 @@ val setSlot : t -> int -> int -> Slot.t -> unit
 val getPool : t -> int -> Server.t list
 
 val addServer : t -> Server.t -> unit
+
+val getServers : t -> Server.t list
