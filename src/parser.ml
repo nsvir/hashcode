@@ -1,5 +1,3 @@
-open Slot
-
 exception WrongFirstLine
 
 type firstline =
@@ -48,7 +46,7 @@ let displayTab array first =
   for i = 0 to first.rows - 1 do
     Printf.printf "|";
     for j = 0 to first.slots - 1 do
-      let bool = match array.(i).(j) with Unavailable -> "X" | Empty -> "." | _ -> "?" in
+      let bool = match array.(i).(j) with Slot.Unavailable -> "X" | Slot.Empty -> "." | _ -> "?" in
       Printf.printf "%s|" bool
     done;
     Printf.printf "\n\n"
@@ -58,14 +56,14 @@ let displayTab array first =
   done;
   Printf.printf "\n"
 
-let _ =
+let create () =
   let first = getFirstLine (readline ()) in
   Printf.printf "Rows: %d | Slots: %d | unavailable: %d | groups: %d | servers: %d\n"
 		first.rows first.slots first.unavailable first.groups first.servers;
   let center = Center.create first.rows first.slots first.groups first.servers in
   for i = 0 to first.unavailable - 1 do
     let row, cell = getInt (readline ()) in
-    Center.setSlot center row cell Unavailable;
+    Center.setSlot center row cell Slot.Unavailable;
   done;
   for i = 0 to first.servers - 1 do
     let size, capacity = getInt (readline ()) in
