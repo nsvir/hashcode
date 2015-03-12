@@ -30,6 +30,9 @@ let setSlot center rowIndex slotIndex slotValue =
 let addServer center server =
   center.servers <- server :: center.servers
 
+let getServers center =
+  center.servers
+
 let getPool center n = (* renvoie la pool numéro n dans le center passé en paramètre *)
   let result = ref [] in
   for i = 0 to center.nbRows - 1 do
