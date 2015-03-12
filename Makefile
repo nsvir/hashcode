@@ -7,7 +7,8 @@ SOURCES = \
 	src/slot.ml \
 	src/center.ml \
 	src/parser.ml \
-	src/flush.ml
+	src/flush.ml \
+	src/main.ml
 
 
 OCAMLDOCFLAGS = -charset utf-8

@@ -58,8 +58,6 @@ let displayTab array first =
 
 let create () =
   let first = getFirstLine (readline ()) in
-  Printf.printf "Rows: %d | Slots: %d | unavailable: %d | groups: %d | servers: %d\n"
-		first.rows first.slots first.unavailable first.groups first.servers;
   let center = Center.create first.rows first.slots first.groups first.servers in
   for i = 0 to first.unavailable - 1 do
     let row, cell = getInt (readline ()) in
