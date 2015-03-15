@@ -33,6 +33,6 @@ let evalServer s =
 let compareServer s1 s2 =
   Pervasives.compare (evalServer s1) (evalServer s2)
 
-let findWorstPull center =
+let findWorstPool center =
   let rows = Center.getMatrix center in
   placeServer center (Center.findLowerRow center) (Center.getServers center |> List.sort compareServer)
